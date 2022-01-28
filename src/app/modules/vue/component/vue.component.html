@@ -1,4 +1,8 @@
-Vue
-<button class="btn btn-success" (click)="goToPage('vue-project-parent')">Go to parent</button>
-<button class="btn btn-success" (click)="goToPage('vue-project-child')">Go to child</button>
+<div class="col centered wrapper">
+  <span class="span">Vue components</span>
+  <div class="row centered">
+    <button class="btn button" (click)="goToPage('vue-project-parent')">Go to parent</button>
+    <button class="button" [routerLink]="['/']">Home</button>
+  </div>
+</div>
 <router-outlet></router-outlet>

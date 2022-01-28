@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  empList: any[] = [];
+
+  constructor(private _routes: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this._routes.data.subscribe((response: any) => {
+      // this.empList = response.employees;
+    })
   }
-
 }

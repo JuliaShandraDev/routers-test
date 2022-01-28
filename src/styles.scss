@@ -13,3 +13,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   justify-content: center;
   align-items: center;
 }
+.size_img-parent{
+    width: 400px;
+    height: 300px;
+}
+.size_img-child{
+    width: 150px;
+    height: 150px;
+}
+.img{
+  width: 30%;
+  height: 40vh;
+}
+.button{
+  width: 100px;
+  height: 40px;
+  border-radius: 20px;
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+.span{
+  font-size: 20px;
+  color: cornflowerblue;
+  font-style: oblique;
+  font-weight: 700;
+}

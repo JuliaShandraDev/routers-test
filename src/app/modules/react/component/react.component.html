@@ -1,4 +1,8 @@
-React
-<button class="btn btn-success" (click)="goToPage('react-project-parent')">Go to parent</button>
-<button class="btn btn-success" (click)="goToPage('react-project-child')">Go to child</button>
+<div class="col centered wrapper">
+  <span class="span">React components</span>
+  <div class="row centered">
+    <button class="btn button" (click)="goToPage('react-project-parent')">Go to parent</button>
+    <button class="button" [routerLink]="['/']">Home</button>
+  </div>
+</div>
 <router-outlet></router-outlet>

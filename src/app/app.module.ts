@@ -11,7 +11,9 @@ import {AngularModule} from "./modules/angular/angular.module";
 import {ReactModule} from "./modules/react/react.module";
 import {VueModule} from "./modules/vue/vue.module";
 import {HomeModule} from "./modules/home/home.module";
-// import {MatTabsModule} from '@angular/material/tabs';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { StackComponent } from './modules/technology/stack/stack.component';
+import {ResolverResolver} from "./resolve/resolver.resolver";
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {HomeModule} from "./modules/home/home.module";
     AppComponent,
     AngularComponent,
     ReactComponent,
-    VueComponent
+    VueComponent,
+    NotFoundComponent,
+    StackComponent
   ],
   imports: [
     BrowserModule,
@@ -28,10 +32,9 @@ import {HomeModule} from "./modules/home/home.module";
     AngularModule,
     ReactModule,
     VueModule,
-    HomeModule,
-    // MatTabsModule
+    HomeModule
   ],
-  providers: [],
+  providers: [ResolverResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

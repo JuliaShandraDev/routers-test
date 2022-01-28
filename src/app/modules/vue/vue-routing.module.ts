@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import {VueProjectChildComponent} from "./children/vue-project-child/vue-project-child.component";
 import {VueProjectParentComponent} from "./children/vue-project-parent/vue-project-parent.component";
+import {NotFoundComponent} from "../angular/children/not-found/not-found.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
       {
         path: 'vue-project-child',
         component: VueProjectChildComponent
+      },
+      {
+        path: 'vue-project-child/:id',
+        component: NotFoundComponent
       }
     ]
   }
