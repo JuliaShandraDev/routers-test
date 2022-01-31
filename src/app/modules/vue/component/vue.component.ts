@@ -17,5 +17,9 @@ export class VueComponent implements OnInit {
     this.router.navigate([`${pageName}`])
   }
 
+  navigateHome(): void {
+    this.router.navigateByUrl('/home');
+  }
+
 
 }

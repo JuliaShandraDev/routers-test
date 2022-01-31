@@ -20,9 +20,12 @@ export class LoaderComponent {
   constructor(private http: HttpClient, public loaderService: LoaderService) {}
 
   run() {
-    // this.loaderService = this.loaderService;
+    this.loaderService.showLoader = true;
     const url = "https://jsonplaceholder.typicode.com/users/1";
-    this.http.get(url).subscribe(r => (this.response = r));
+    this.http.get(url).subscribe((r) => {
+      this.loaderService.showLoader = false;
+      return (this.response = r);
+    });
     // this.http.get(url).pipe(map (r => console.log("11112", r))).subscribe()
 
   }

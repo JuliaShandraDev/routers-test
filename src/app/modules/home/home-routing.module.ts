@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {NotFoundComponent} from "../../shared/not-found/not-found.component";
 import {ResolverResolver} from "../../resolve/resolver.resolver";
+import {UserResolver} from "../../resolve/user/user.resolver";
 
 const routes: Routes = [
   {
@@ -20,7 +21,9 @@ const routes: Routes = [
   },
   {
     path: 'vue',
-    loadChildren: () => import('../../modules/vue/vue.module').then(m => m.VueModule)
+    loadChildren: () => import('../../modules/vue/vue.module').then(m => m.VueModule),
+    outlet: "with",
+    resolve: { users: UserResolver }
   },
   {
     path: '**',
@@ -31,6 +34,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [ResolverResolver],
+  providers: [UserResolver],
 })
 export class HomeRoutingModule { }

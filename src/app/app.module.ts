@@ -15,6 +15,7 @@ import {HomeModule} from "./modules/home/home.module";
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { StackComponent } from './modules/technology/stack/stack.component';
 import {ResolverResolver} from "./resolve/resolver.resolver";
+import { WithResolverComponent } from './shared/with-resolver/with-resolver.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {ResolverResolver} from "./resolve/resolver.resolver";
     ReactComponent,
     VueComponent,
     NotFoundComponent,
-    StackComponent
+    StackComponent,
+    WithResolverComponent
   ],
   imports: [
     BrowserModule,

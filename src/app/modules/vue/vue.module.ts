@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VueProjectChildComponent } from './children/vue-project-child/vue-project-child.component';
 import { VueProjectParentComponent } from './children/vue-project-parent/vue-project-parent.component';
+import { WithResolverComponent } from "../../shared/with-resolver/with-resolver.component";
 import {VueRoutingModule} from "./vue-routing.module";
 
 
@@ -12,6 +13,7 @@ import {VueRoutingModule} from "./vue-routing.module";
     VueProjectParentComponent
   ],
   exports: [
+    VueProjectChildComponent,
     VueProjectParentComponent
   ],
   imports: [
