@@ -15,13 +15,13 @@ export class ResolverResolver implements Resolve<Promise<any>>  {
   constructor(private http: HttpClient) {}
 
   // @ts-ignore
-  techList: IStack[] = this.techList;
+  techListReact: IStack[] = this.techListReact;
   resolve() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const data = { res: this.techList };
+        const data = { res: this.techListReact };
         resolve(data);
-      }, 1000);
+      }, 0);
     });
   }
 }

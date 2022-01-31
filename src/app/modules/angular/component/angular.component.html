@@ -1,9 +1,9 @@
 <div class="col centered wrapper">
   <span class="span">Angular components</span>
-  <app-stack></app-stack>
   <div class="row centered">
     <button class="btn button" (click)="goToPage('angular-project-parent')">Go to parent</button>
     <button class="button" [routerLink]="['/']">Home</button>
   </div>
+  <app-loader></app-loader>
 </div>
 <router-outlet></router-outlet>

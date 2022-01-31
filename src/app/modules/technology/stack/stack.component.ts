@@ -15,7 +15,7 @@ export class StackComponent {
   ngOnInit() {
     this.data = this.route.snapshot.data;
   }
-  public techList: IStack[] = [
+  public techListReact: IStack[] = [
     {
       name: "Java Script"
     },

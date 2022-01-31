@@ -4,6 +4,8 @@ import { AngularProjectChildComponent } from './children/angular-project-child/a
 import { AngularProjectParentComponent } from './children/angular-project-parent/angular-project-parent.component';
 import {AngularRoutingModule} from "./angular-routing.module";
 import { NotFoundComponent } from './children/not-found/not-found.component';
+import {LoaderComponent} from "../../shared/loader/loader.component";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -11,15 +13,18 @@ import { NotFoundComponent } from './children/not-found/not-found.component';
   declarations: [
     AngularProjectChildComponent,
     AngularProjectParentComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LoaderComponent
   ],
   exports: [
     AngularProjectChildComponent,
-    AngularProjectParentComponent
+    AngularProjectParentComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
-    AngularRoutingModule
-  ]
+    AngularRoutingModule,
+    MatButtonModule
+  ],
 })
 export class AngularModule { }

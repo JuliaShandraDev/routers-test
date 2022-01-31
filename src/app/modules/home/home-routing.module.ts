@@ -11,12 +11,12 @@ const routes: Routes = [
   },
   {
     path: 'angular',
-    loadChildren: () => import('../../modules/angular/angular.module').then(m => m.AngularModule),
-    resolve: { message: ResolverResolver },
+    loadChildren: () => import('../../modules/angular/angular.module').then(m => m.AngularModule)
   },
   {
     path: 'react',
-    loadChildren: () => import('../../modules/react/react.module').then(m => m.ReactModule)
+    loadChildren: () => import('../../modules/react/react.module').then(m => m.ReactModule),
+    resolve: { ResolverResolver },
   },
   {
     path: 'vue',
