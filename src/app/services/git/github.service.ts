@@ -10,6 +10,6 @@ export class GithubService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<any> {
-    return this.http.get(this.url).pipe(delay(2000));
+    return this.http.get(this.url).pipe(delay(2000)).pipe();
   }
 }

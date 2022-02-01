@@ -5,7 +5,7 @@ import {AngularComponent} from "./modules/angular/component/angular.component";
 import {ReactComponent} from "./modules/react/component/react.component";
 import {VueComponent} from "./modules/vue/component/vue.component";
 import {HomeGuard} from "./modules/home/home.guard";
-import {ResolverResolver} from "./resolve/resolver.resolver";
+// import {ResolverResolver} from "./resolve/resolver.resolver";
 
 const routes: Routes = [
   {
@@ -33,7 +33,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  providers: [HomeGuard, ResolverResolver],
+  providers: [HomeGuard],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

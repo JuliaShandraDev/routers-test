@@ -17,15 +17,19 @@ export class StackComponent {
   }
   public techListReact: IStack[] = [
     {
+      id: 1,
       name: "Java Script"
     },
     {
+      id: 2,
       name: "Redux"
     },
     {
+      id: 3,
       name: "Express JS"
     },
     {
+      id: 4,
       name: "Mongo DB"
     }
   ];

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {GithubService} from "../../../services/git/github.service";
 
 @Component({
   selector: 'app-vue',
@@ -8,9 +9,10 @@ import {Router} from "@angular/router";
 })
 export class VueComponent implements OnInit {
 
-  constructor(private router: Router) { }
-
+  constructor(private router: Router, private githubService: GithubService) { }
+  users: any = [];
   ngOnInit(): void {
+
   }
 
   goToPage(pageName: string){

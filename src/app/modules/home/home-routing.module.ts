@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {NotFoundComponent} from "../../shared/not-found/not-found.component";
-import {ResolverResolver} from "../../resolve/resolver.resolver";
 import {UserResolver} from "../../resolve/user/user.resolver";
 
 const routes: Routes = [
@@ -16,14 +15,11 @@ const routes: Routes = [
   },
   {
     path: 'react',
-    loadChildren: () => import('../../modules/react/react.module').then(m => m.ReactModule),
-    resolve: { ResolverResolver },
+    loadChildren: () => import('../../modules/react/react.module').then(m => m.ReactModule)
   },
   {
     path: 'vue',
     loadChildren: () => import('../../modules/vue/vue.module').then(m => m.VueModule),
-    outlet: "with",
-    resolve: { users: UserResolver }
   },
   {
     path: '**',
