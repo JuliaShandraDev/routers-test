@@ -1,9 +1,9 @@
 import { User } from "src/app/model/user";
 
-export interface UserState {
+export interface UserState{
   user: User
 }
 
 export const initialUserState: UserState = {
-  user: new User(),
+  user: new User()
 }

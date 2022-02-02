@@ -10,5 +10,4 @@ export class UpdateUser implements Action {
 
   constructor(public payload: User) { }
 }
-
 export type UserActions = UpdateUser;

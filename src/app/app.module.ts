@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
 
 import { StoreModule } from '@ngrx/store';
-import { userReducers } from "src/app/store/reducers/user.reducer";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularComponent } from './modules/angular/component/angular.component';
@@ -20,6 +19,13 @@ import { WithResolverComponent } from './shared/with-resolver/with-resolver.comp
 import {GithubService} from "./services/git/github.service";
 import {UserViewModule} from "./modules/user-view/user-view.module";
 import { reducers, metaReducers } from './reducers';
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {environment} from "../environments/environment";
+import {StoreRouterConnectingModule} from "@ngrx/router-store";
+import {RouterModule} from "@angular/router";
+import {userReducers, userStore} from "./reducers/user/user.reducer";
+import {EffectsModule, USER_PROVIDED_EFFECTS} from "@ngrx/effects";
+// import {UserEffects} from "./reducers/user/user.effect";
 
 
 
@@ -44,12 +50,29 @@ import { reducers, metaReducers } from './reducers';
     HttpClientModule,
     UserViewModule,
     BrowserModule,
-    StoreModule.forRoot(userReducers),
-    StoreModule.forRoot(reducers, {
-      metaReducers
-    })
+    StoreModule.forRoot(reducers,{
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+    RouterModule.forRoot([
+
+    ]),
+    // StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    StoreRouterConnectingModule.forRoot(),
+    // StoreModule.forFeature("user", reducers),
+    // EffectsModule.forRoot([UserEffects])
   ],
   providers: [GithubService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+// , UserEffects,
+//   {
+//     provide: USER_PROVIDED_EFFECTS,
+//     multi: true,
+//     useValue: [UserEffects],
+//   },

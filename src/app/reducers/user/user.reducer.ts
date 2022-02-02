@@ -1,5 +1,7 @@
-import { UserActions, UserActionsEnum } from "src/app/store/actions/user.action";
-import { initialUserState } from "../state/user.state";
+import { UserActions, UserActionsEnum } from "./user.action";
+import { initialUserState } from "./user.state";
+
+export const userStore = "userList"
 
 export const userReducers = (
   state = initialUserState,
