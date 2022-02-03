@@ -13,10 +13,6 @@ const routes: Routes = [
         path: 'angular-project-child',
         component: AngularProjectChildComponent
       },
-      // {
-      //   path: 'angular-project-child/:id',
-      //   component: NotFoundComponent
-      // }
 ];
 
 @NgModule({

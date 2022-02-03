@@ -8,12 +8,12 @@ import {
 import {userReducers, userStore} from "./user/user.reducer";
 
 import { environment } from '../../environments/environment';
-import {User} from "../model/user";
+import {UserModel} from "../model/user.model";
 
 export interface IUserListState {
   Loading: boolean;
   Loaded: boolean;
-  UserList: User[];
+  UserList: UserModel[];
 }
 
 export interface State {

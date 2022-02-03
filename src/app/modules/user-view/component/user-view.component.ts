@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from "src/app/model/user";
+import { UserModel } from "src/app/model/user.model";
 import { Store, select } from "@ngrx/store";
 import { selectUser } from "../../../reducers/user/user.selector";
 import { UpdateUser} from '../../../reducers/user/user.action';
@@ -13,7 +13,7 @@ import {UserState} from "../../../reducers/user/user.state";
 export class UserViewComponent {
   public user$ = this.store$.pipe(select(selectUser));
 
-  public user: User;
+  public user: UserModel;
 
   constructor(
     public store$: Store <UserState>
@@ -22,7 +22,7 @@ export class UserViewComponent {
   }
 
   updateUser() {
-    this.user = new User();
+    this.user = new UserModel();
     this.user.id = this.randomInt(100, 150);
     this.user.cardNumber = this.randomInt(150, 200);
     this.user.name = this.randomString(6);

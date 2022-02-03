@@ -23,10 +23,10 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {environment} from "../environments/environment";
 import {StoreRouterConnectingModule} from "@ngrx/router-store";
 import {RouterModule} from "@angular/router";
-import {userReducers, userStore} from "./reducers/user/user.reducer";
 import {EffectsModule, USER_PROVIDED_EFFECTS} from "@ngrx/effects";
-// import {UserEffects} from "./reducers/user/user.effect";
-
+import {PostsEffects} from "./modules/posts/state/posts.effects";
+import {PostsComponent} from "./modules/posts/component/posts.component";
+import {PostsModule} from "./modules/posts/posts.module";
 
 
 @NgModule({
@@ -38,6 +38,7 @@ import {EffectsModule, USER_PROVIDED_EFFECTS} from "@ngrx/effects";
     NotFoundComponent,
     StackComponent,
     WithResolverComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +50,7 @@ import {EffectsModule, USER_PROVIDED_EFFECTS} from "@ngrx/effects";
     HomeModule,
     HttpClientModule,
     UserViewModule,
-    BrowserModule,
+    PostsModule,
     StoreModule.forRoot(reducers,{
       metaReducers,
       runtimeChecks: {
@@ -60,19 +61,17 @@ import {EffectsModule, USER_PROVIDED_EFFECTS} from "@ngrx/effects";
     RouterModule.forRoot([
 
     ]),
-    // StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     StoreRouterConnectingModule.forRoot(),
-    // StoreModule.forFeature("user", reducers),
-    // EffectsModule.forRoot([UserEffects])
+    EffectsModule.forRoot([PostsEffects])
   ],
-  providers: [GithubService],
+  providers: [GithubService, PostsEffects,
+    {
+      provide: USER_PROVIDED_EFFECTS,
+      multi: true,
+      useValue: [PostsEffects],
+    },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-// , UserEffects,
-//   {
-//     provide: USER_PROVIDED_EFFECTS,
-//     multi: true,
-//     useValue: [UserEffects],
-//   },
+
