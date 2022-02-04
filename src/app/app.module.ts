@@ -27,6 +27,7 @@ import {EffectsModule, USER_PROVIDED_EFFECTS} from "@ngrx/effects";
 import {PostsEffects} from "./modules/posts/state/posts.effects";
 import {PostsComponent} from "./modules/posts/component/posts.component";
 import {PostsModule} from "./modules/posts/posts.module";
+import { OnlyNumberDirective } from './directive/only-number.directive';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import {PostsModule} from "./modules/posts/posts.module";
     NotFoundComponent,
     StackComponent,
     WithResolverComponent,
-    PostsComponent
+    PostsComponent,
+    OnlyNumberDirective
   ],
   imports: [
     BrowserModule,
@@ -51,16 +53,14 @@ import {PostsModule} from "./modules/posts/posts.module";
     HttpClientModule,
     UserViewModule,
     PostsModule,
-    StoreModule.forRoot(reducers,{
+    StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true
       }
     }),
-    RouterModule.forRoot([
-
-    ]),
+    RouterModule.forRoot([]),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([PostsEffects])
@@ -71,6 +71,9 @@ import {PostsModule} from "./modules/posts/posts.module";
       multi: true,
       useValue: [PostsEffects],
     },],
+  exports: [
+    OnlyNumberDirective
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

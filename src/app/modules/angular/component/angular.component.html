@@ -1,8 +1,14 @@
 <div class="col centered wrapper">
   <span class="span">Angular components</span>
-  <div class="row centered">
+  <div class="col centered">
     <button class="btn button" (click)="goToPage('angular-project-parent')">Go to parent</button>
     <button class="button" [routerLink]="['/']">Home</button>
+<!--directive-->
+    <input type="text" appOnlyNumber>
+
+<!--pipe-->
+    <input type="text">
+
   </div>
   <app-loader></app-loader>
 </div>
