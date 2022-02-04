@@ -1,4 +1,4 @@
-import { Post } from 'src/app/model/posts.model';
+import { IPost } from 'src/app/interfaces/posts.interface';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -9,29 +9,30 @@ import { map } from 'rxjs/operators';
 export class PostsService {
   constructor(private http: HttpClient) {}
 
-  getPosts(): Observable<Post[]> {
+  getPosts(): Observable<IPost[]> {
     return this.http
-      .get<Post[]>(`https://jsonplaceholder.typicode.com/posts`)
+      .get<IPost[]>(`https://jsonplaceholder.typicode.com/posts`)
       .pipe(
         map((data) => {
-          const posts: Post[] = [];
+          const posts: IPost[] = [];
           for (let key in data) {
             //@ts-ignore
             posts.push({ ...data[key], id: key });
           }
+          console.log(posts)
           return posts;
         })
       );
   }
 
-  addPost(post: Post): Observable<{ name: string }> {
+  addPost(post: IPost): Observable<{ name: string }> {
     return this.http.post<{ name: string }>(
       `https://jsonplaceholder.typicode.com/posts`,
       post
     );
   }
 
-  updatePost(post: Post) {
+  updatePost(post: IPost) {
     const postData = {
       [post.id]: { title: post.title, body: post.body },
     };
@@ -41,14 +42,14 @@ export class PostsService {
     );
   }
 
-  deletePost(id: number) {
+  deletePost(id: string) {
     return this.http.delete(
       `https://jsonplaceholder.typicode.com/posts/${id}`
     );
   }
 
-  getPostById(id: number): Observable<Post> {
-    return this.http.get<Post>(
+  getPostById(id: string): Observable<IPost> {
+    return this.http.get<IPost>(
       `https://jsonplaceholder.typicode.com/posts/${id}`
     );
   }

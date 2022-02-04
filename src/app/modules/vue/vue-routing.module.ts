@@ -15,10 +15,6 @@ const routes: Routes = [
         path: 'vue-project-child',
         component: VueProjectChildComponent
       },
-  // {
-  //   path: 'angular-project-child/:id',
-  //   component: NotFoundComponent
-  // }
       {
         path: 'resolver',
         component: WithResolverComponent,

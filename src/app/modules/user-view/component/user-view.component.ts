@@ -23,20 +23,20 @@ export class UserViewComponent {
 
   updateUser() {
     this.user = new UserModel();
-    this.user.id = this.randomInt(100, 150);
-    this.user.cardNumber = this.randomInt(150, 200);
-    this.user.name = this.randomString(6);
-    this.user.cardType = this.randomString(6);
+    this.user.id = UserViewComponent.randomInt(100, 150);
+    this.user.cardNumber = UserViewComponent.randomInt(150, 200);
+    this.user.name = UserViewComponent.randomString(6);
+    this.user.cardType = UserViewComponent.randomString(6);
     this.store$.dispatch(new UpdateUser(this.user));
     console.log(this.user)
   }
 
-  private randomInt(min: number, max: number) {
+  private static randomInt(min: number, max: number) {
     let rand = min + Math.random() * (max + 1 - min);
     return Math.floor(rand);
   }
 
-  private randomString(length: number | undefined) {
+  private static randomString(length: number | undefined) {
     return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, length)
   }
 

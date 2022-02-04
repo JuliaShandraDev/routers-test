@@ -5,11 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './vue-project-child.component.html',
   styleUrls: ['./vue-project-child.component.scss']
 })
-export class VueProjectChildComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class VueProjectChildComponent {}

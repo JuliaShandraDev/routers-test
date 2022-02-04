@@ -1,6 +1,6 @@
 <div class="row centered wrapper">
   <div class="col">
-    <h3>Posts List ({{ count | async }})</h3>
+<!--    <h3>Posts List ({{ count | async }})</h3>-->
     <div class="button-add">
       <button class="button" [routerLink]="['/posts/add']"
       >Add Post</button
@@ -16,8 +16,9 @@
       </tr>
       </thead>
       <tbody class="table">
-      <tr *ngFor="let post of postsData" class="table-item">
-        <td>{{ post.id }}</td>
+      <tr *ngFor="let post of postsData; let i = index" class="table-item">
+<!--        <td>{{ post.id }}</td>-->
+        <td>{{ i+1 }}</td>
         <td style="word-break: break-all">{{ post.title }}</td>
         <td style="word-break: break-all">{{ post.body }}</td>
         <td>

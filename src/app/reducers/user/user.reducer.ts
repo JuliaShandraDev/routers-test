@@ -8,11 +8,9 @@ export const userReducers = (
   action: UserActions
 ) => {
   switch(action.type) {
-    case UserActionsEnum.UpdateUser: {
+    case UserActionsEnum.UpdateUser:
       return {...state, user: action.payload};
-    }
-    default: {
+    default:
       return state;
-    }
   }
 }

@@ -7,14 +7,10 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
   empList: any[] = [];
-
   constructor(private _routes: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this._routes.data.subscribe((response: any) => {
-      // this.empList = response.employees;
-    })
+    this._routes.data.subscribe((response: any) => {})
   }
 }

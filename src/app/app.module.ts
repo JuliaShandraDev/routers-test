@@ -28,6 +28,8 @@ import {PostsEffects} from "./modules/posts/state/posts.effects";
 import {PostsComponent} from "./modules/posts/component/posts.component";
 import {PostsModule} from "./modules/posts/posts.module";
 import { OnlyNumberDirective } from './directive/only-number.directive';
+import {LinkPipe} from "./pipe/link.pipe";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { OnlyNumberDirective } from './directive/only-number.directive';
     StackComponent,
     WithResolverComponent,
     PostsComponent,
-    OnlyNumberDirective
+    OnlyNumberDirective,
+    LinkPipe
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { OnlyNumberDirective } from './directive/only-number.directive';
     RouterModule.forRoot([]),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([PostsEffects])
+    EffectsModule.forRoot([PostsEffects]),
+    FormsModule
   ],
   providers: [GithubService, PostsEffects,
     {

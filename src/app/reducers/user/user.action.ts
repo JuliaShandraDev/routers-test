@@ -7,7 +7,6 @@ export enum UserActionsEnum {
 
 export class UpdateUser implements Action {
   public readonly type = UserActionsEnum.UpdateUser
-
   constructor(public payload: UserModel) { }
 }
 export type UserActions = UpdateUser;

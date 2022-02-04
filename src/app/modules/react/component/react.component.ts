@@ -1,4 +1,4 @@
-  import { Component, OnInit } from '@angular/core';
+  import { Component} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -6,12 +6,8 @@ import {Router} from "@angular/router";
   templateUrl: './react.component.html',
   styleUrls: ['./react.component.scss']
 })
-export class ReactComponent implements OnInit {
-
+export class ReactComponent {
   constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   goToPage(pageName: string){
     this.router.navigate([`${pageName}`])

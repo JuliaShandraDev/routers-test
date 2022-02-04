@@ -1,7 +1,7 @@
 import { getPostById } from '../../state/posts.selector';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
-import { Post } from 'src/app/model/posts.model';
+import { IPost } from 'src/app/interfaces/posts.interface';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./single-post.component.scss'],
 })
 export class SinglePostComponent implements OnInit {
-  post: Observable<Post>;
+  post: Observable<IPost>;
 
   constructor(private store: Store<AppState>) {}
 

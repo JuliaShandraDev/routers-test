@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -6,15 +6,17 @@ import {Router} from "@angular/router";
   templateUrl: './angular.component.html',
   styleUrls: ['./angular.component.scss']
 })
-export class AngularComponent implements OnInit {
+export class AngularComponent {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  public value = '';
+
+  inputChange(event: any){
+    this.value = event
   }
 
   goToPage(pageName: string){
     this.router.navigate([`${pageName}`])
   }
-
 }

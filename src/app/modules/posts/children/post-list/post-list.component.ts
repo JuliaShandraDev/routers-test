@@ -1,5 +1,5 @@
 import { getPosts, getCount } from '../../state/posts.selector';
-import { Post } from 'src/app/model/posts.model';
+import { IPost } from 'src/app/interfaces/posts.interface';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -12,7 +12,7 @@ import { deletePost, loadPosts } from 'src/app/modules/posts/state/posts.action'
   styleUrls: ['./post-list.component.scss'],
 })
 export class PostListComponent implements OnInit {
-  posts: Observable<Post[]>;
+  posts: Observable<IPost[]>;
   count: Observable<number>;
   constructor(private store: Store<AppState>) {}
 
@@ -23,7 +23,7 @@ export class PostListComponent implements OnInit {
     console.log(this.posts);
   }
 
-  onDeletePost(id: number) {
+  onDeletePost(id: string) {
     if (confirm('Are you sure you want to delete')) {
       this.store.dispatch(deletePost({ id }));
     }

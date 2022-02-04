@@ -1,6 +1,6 @@
 import { updatePost } from 'src/app/modules/posts/state/posts.action';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Post } from 'src/app/model/posts.model';
+import { IPost } from 'src/app/interfaces/posts.interface';
 import { getPostById } from '../../state/posts.selector';
 import { AppState } from 'src/app/store/app.state';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -14,16 +14,18 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./edit-post.component.scss'],
 })
 export class EditPostComponent implements OnInit, OnDestroy {
-  public post: Post;
+  public post: IPost;
   public postForm: FormGroup;
   public postSubscription: Subscription;
   constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit(): void {
     this.createForm();
+  // , {id: '12'}
     this.store.select(getPostById).subscribe((post) => {
+      console.log(post)
       if (post) {
-        this.post;
+        // this.post;
         this.postForm.patchValue({
           id: post.id,
           title: post.title,
@@ -57,8 +59,8 @@ export class EditPostComponent implements OnInit, OnDestroy {
     const title = this.postForm.value.title;
     const body = this.postForm.value.body;
 
-    const post: Post = {
-      id: Math.random(),
+    const post: IPost = {
+      id: Math.random().toString(),
       title,
       body,
     };

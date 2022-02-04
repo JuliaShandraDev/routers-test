@@ -5,11 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './react-project-parent.component.html',
   styleUrls: ['./react-project-parent.component.scss']
 })
-export class ReactProjectParentComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class ReactProjectParentComponent {}

@@ -2,7 +2,7 @@ import { AppState } from 'src/app/store/app.state';
 import { getPosts } from './posts.selector';
 import { Store } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
-import { Post } from 'src/app/model/posts.model';
+import { IPost } from 'src/app/interfaces/posts.interface';
 import {
   filter,
   map,
@@ -23,11 +23,6 @@ import {
 import { PostsService } from 'src/app/services/posts/posts.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import {
-  RouterNavigatedAction,
-  routerNavigationAction,
-  ROUTER_NAVIGATION,
-} from '@ngrx/router-store';
 import {Observable} from "rxjs";
 
 @Injectable()
@@ -75,7 +70,7 @@ export class PostsEffects {
       switchMap((action) => {
         return this.postsService.updatePost(action.post).pipe(
           map((data) => {
-            const updatedPost: Update<Post> = {
+            const updatedPost: Update<IPost> = {
               id: action.post.id,
               changes: {
                 ...action.post,
@@ -100,28 +95,29 @@ export class PostsEffects {
     );
   });
 
-  getSinglePost$ = createEffect((): Observable<any> => {
-    return this.actions$.pipe(
-      ofType(ROUTER_NAVIGATION),
-      filter((r: RouterNavigatedAction) => {
-        return r.payload.routerState.url.startsWith('/posts/details');
-      }),
-      map((r: RouterNavigatedAction) => {
-        // @ts-ignore
-        return r.payload.routerState['params']['id'];
-      }),
-      withLatestFrom(this.store.select(getPosts)),
-      switchMap(([id, posts]) => {
-        if (!posts.length) {
-          return this.postsService.getPostById(id).pipe(
-            map((post) => {
-              const postData = [{ ...post, id }];
-              return loadPostsSuccess({ posts: postData });
-            })
-          );
-        }
-        return posts;
-      })
-    );
-  });
+  // getSinglePost$ = createEffect((): Observable<any> => {
+  //   return this.actions$.pipe(
+  //     ofType(ROUTER_NAVIGATION),
+  //     filter((r: RouterNavigatedAction) => {
+  //       return r.payload.routerState.url.startsWith('/posts/details');
+  //     }),
+  //     map((r: RouterNavigatedAction) => {
+  //       console.log(r)
+  //       // @ts-ignore
+  //       return r.payload.event.id.toString();
+  //     }),
+  //     withLatestFrom(this.store.select(getPosts)),
+  //     switchMap(([id, posts]) => {
+  //       if (!posts.length) {
+  //         return this.postsService.getPostById(id).pipe(
+  //           map((post) => {
+  //             const postData = [{ ...post, id }];
+  //             return loadPostsSuccess({ posts: postData });
+  //           })
+  //         );
+  //       }
+  //       return posts;
+  //     })
+  //   );
+  // });
 }

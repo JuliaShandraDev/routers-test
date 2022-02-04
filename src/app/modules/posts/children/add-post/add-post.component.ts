@@ -1,5 +1,5 @@
 import { addPost } from 'src/app/modules/posts/state/posts.action';
-import { Post } from 'src/app/model/posts.model';
+import { IPost } from 'src/app/interfaces/posts.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -33,9 +33,10 @@ export class AddPostComponent implements OnInit {
 
 
 
+
   // @ts-ignore
   public showBodyErrors() {
-    const bodyForm = this.postForm?.get('body');
+    this.postForm?.get('body');
 
     if (this.bodyForm?.touched && !this.bodyForm?.valid) {
 
@@ -54,7 +55,7 @@ export class AddPostComponent implements OnInit {
       return;
     }
 
-    const post: { id: number; body: string; title: string } = {
+    const post: { id: string; body: string; title: string } = {
       id: this.postForm.value.id,
       title: this.postForm.value.title,
       body: this.postForm.value.body,

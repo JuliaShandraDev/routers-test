@@ -6,10 +6,6 @@ import {AddPostComponent} from "./children/add-post/add-post.component";
 import {EditPostComponent} from "./children/edit-post/edit-post.component";
 
 const routes: Routes = [
-  // {
-  //   path: '/',
-  //   component: PostListComponent,
-  // },
   {
     path: '',
     component: PostListComponent
@@ -21,11 +17,7 @@ const routes: Routes = [
       },
 
 ];
-// {
-//   path: '',
-//     pathMatch: '',
-//   redirectTo: 'posts',
-// },
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

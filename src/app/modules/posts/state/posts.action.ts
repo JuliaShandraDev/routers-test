@@ -1,5 +1,5 @@
 import { Update } from '@ngrx/entity';
-import { Post } from 'src/app/model/posts.model';
+import { IPost } from 'src/app/interfaces/posts.interface';
 import { createAction, props } from '@ngrx/store';
 
 export const ADD_POST_ACTION = '[posts page] add post';
@@ -11,32 +11,32 @@ export const DELETE_POST_SUCCESS = '[posts page] delete post success';
 export const LOAD_POSTS = '[posts page] load posts';
 export const LOAD_POSTS_SUCCESS = '[posts page] load posts success';
 
-export const addPost = createAction(ADD_POST_ACTION, props<{ post: Post }>());
+export const addPost = createAction(ADD_POST_ACTION, props<{ post: IPost }>());
 export const addPostSuccess = createAction(
   ADD_POST_SUCCESS,
-  props<{ post: Post }>()
+  props<{ post: IPost }>()
 );
 export const updatePost = createAction(
   UPDATE_POST_ACTION,
-  props<{ post: Post }>()
+  props<{ post: IPost }>()
 );
 
 export const updatePostSuccess = createAction(
   UPDATE_POST_SUCCESS,
-  props<{ post: Update<Post> }>()
+  props<{ post: Update<IPost> }>()
 );
 
 export const deletePost = createAction(
   DELETE_POST_ACTION,
-  props<{ id: number }>()
+  props<{ id: string }>()
 );
 export const deletePostSuccess = createAction(
   DELETE_POST_SUCCESS,
-  props<{ id: number }>()
+  props<{ id: string }>()
 );
 
 export const loadPosts = createAction(LOAD_POSTS);
 export const loadPostsSuccess = createAction(
   LOAD_POSTS_SUCCESS,
-  props<{ posts: Post[] }>()
+  props<{ posts: IPost[] }>()
 );
