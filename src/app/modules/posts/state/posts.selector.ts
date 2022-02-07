@@ -1,6 +1,8 @@
+import { RouterStateUrl } from './../../store/router/custom-serializer';
+import { getCurrentRoute } from './../../store/router/router.selector';
 import { postsAdapter, PostsState } from './posts.state';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import {IPost} from "../../../interfaces/posts.interface";
+import { RouterState } from '@angular/router';
 
 export const POST_STATE_NAME = 'posts';
 const getPostsState = createFeatureSelector<PostsState>(POST_STATE_NAME);
@@ -12,14 +14,12 @@ export const getPostEntities = createSelector(
   postsSelectors.selectEntities
 );
 
-// getPostEntities,
-//   (state: IPost[], props: { id: string }) => state.find(post => post.id === props.id)
-
-
 export const getPostById = createSelector(
-  // @ts-ignore
   getPostEntities,
-  (state: IPost[], props: { id: string }) => state.find(post => post.id === props.id)
+  getCurrentRoute,
+  (posts, route: RouterStateUrl) => {
+    return posts ? posts[route.params['id']] : null;
+  }
 );
 
 export const getCount = createSelector(getPostsState, (state) => state.count);

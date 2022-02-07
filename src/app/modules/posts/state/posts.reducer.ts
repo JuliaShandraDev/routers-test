@@ -5,7 +5,7 @@ import {
   addPostSuccess,
   updatePostSuccess,
   deletePostSuccess,
-} from './posts.action';
+} from './posts.actions';
 import { Action, createReducer, on} from '@ngrx/store';
 import {initialState, postsAdapter, PostsState} from './posts.state';
 

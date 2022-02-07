@@ -1,12 +1,8 @@
+import { SinglePostComponent } from './modules/posts/single-post/single-post.component';
+import { AuthGuard } from './modules/services/auth.guard';
+import { HomeComponent } from './modules/home/home.component';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import {HomeComponent} from "./modules/home/component/home.component";
-import {AngularComponent} from "./modules/angular/component/angular.component";
-import {ReactComponent} from "./modules/react/component/react.component";
-import {VueComponent} from "./modules/vue/component/vue.component";
-import {HomeGuard} from "./modules/home/home.guard";
-import {PostsComponent} from "./modules/posts/component/posts.component";
-
+import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -14,31 +10,23 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'angular',
-    component: AngularComponent,
-    // canActivate: [HomeGuard]
-
-  },
-  {
-    path: 'react',
-    component: ReactComponent,
-    // canActivate: [HomeGuard]
-  },
-  {
-    path: 'vue',
-    component: VueComponent,
-    // canActivate: [HomeGuard]
-  },
-  {
     path: 'posts',
-    component: PostsComponent,
-    // canActivate: [HomeGuard]
-  }
+    loadChildren: () =>
+      import('./modules/posts/posts.module').then((m) => m.PostsModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'posts/details/:id',
+    component: SinglePostComponent,
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  providers: [HomeGuard],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

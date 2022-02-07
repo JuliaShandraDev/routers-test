@@ -1,84 +1,48 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from "@angular/common/http";
-
-import { StoreModule } from '@ngrx/store';
+import { CustomSerializer } from './store/router/custom-serializer';
+import { AuthTokenInterceptor } from './modules/services/AuthToken.interceptor';
+import { AuthEffects } from './modules/auth/state/auth.effects';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { appReducer } from './store/app.state';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AngularComponent } from './modules/angular/component/angular.component';
-import { ReactComponent } from './modules/react/component/react.component';
-import { VueComponent } from './modules/vue/component/vue.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {AngularModule} from "./modules/angular/angular.module";
-import {ReactModule} from "./modules/react/react.module";
-import {VueModule} from "./modules/vue/vue.module";
-import {HomeModule} from "./modules/home/home.module";
-import { NotFoundComponent } from './shared/not-found/not-found.component';
-import { StackComponent } from './modules/technology/stack/stack.component';
-import { WithResolverComponent } from './shared/with-resolver/with-resolver.component';
-import {GithubService} from "./services/git/github.service";
-import {UserViewModule} from "./modules/user-view/user-view.module";
-import { reducers, metaReducers } from './reducers';
-import {StoreDevtoolsModule} from "@ngrx/store-devtools";
-import {environment} from "../environments/environment";
-import {StoreRouterConnectingModule} from "@ngrx/router-store";
-import {RouterModule} from "@angular/router";
-import {EffectsModule, USER_PROVIDED_EFFECTS} from "@ngrx/effects";
-import {PostsEffects} from "./modules/posts/state/posts.effects";
-import {PostsComponent} from "./modules/posts/component/posts.component";
-import {PostsModule} from "./modules/posts/posts.module";
-import { OnlyNumberDirective } from './directive/only-number.directive';
-import {LinkPipe} from "./pipe/link.pipe";
-import {FormsModule} from "@angular/forms";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
+import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './modules/home/home.component';
+import { HeaderComponent } from './modules/shared/components/header/header.component';
+import { environment } from 'src/environments/environment';
+import { LoadingSpinnerComponent } from './modules/shared/components/loading-spinner/loading-spinner.component';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AngularComponent,
-    ReactComponent,
-    VueComponent,
-    NotFoundComponent,
-    StackComponent,
-    WithResolverComponent,
-    PostsComponent,
-    OnlyNumberDirective,
-    LinkPipe
+    HomeComponent,
+    HeaderComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    AngularModule,
-    ReactModule,
-    VueModule,
-    HomeModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    UserViewModule,
-    PostsModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      }
+    FormsModule,
+    EffectsModule.forRoot([AuthEffects]),
+    StoreModule.forRoot(appReducer),
+    StoreDevtoolsModule.instrument({
+      logOnly: environment.production,
     }),
-    RouterModule.forRoot([]),
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([PostsEffects]),
-    FormsModule
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer,
+    }),
   ],
-  providers: [GithubService, PostsEffects,
-    {
-      provide: USER_PROVIDED_EFFECTS,
-      multi: true,
-      useValue: [PostsEffects],
-    },],
-  exports: [
-    OnlyNumberDirective
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
+export class AppModule {}
