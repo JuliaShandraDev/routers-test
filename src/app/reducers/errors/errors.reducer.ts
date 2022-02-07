@@ -1,5 +1,6 @@
 import { ErrorsActions, ErrorsActionTypes } from './errors.actions';
 
+export const errorsStore = "errorsList"
 export const initialState: Array<any> = [];
 
 export const reducer = (state = initialState, action: ErrorsActions) => {

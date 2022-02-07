@@ -18,6 +18,9 @@ import { Errors } from './errors/errors.model';
 
 import { environment } from '../../environments/environment';
 import {UserModel} from "../model/user.model";
+import {errorsStore} from "./errors/errors.reducer";
+import {currentFilterStore} from "./filter/filter.reducer";
+import {todoStore} from "./todo/todo.reducer";
 
 export interface IUserListState {
   Loading: boolean;
@@ -40,9 +43,11 @@ export interface TodosState extends Todos, Filter, Errors { }
 // export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
 
 export const reducers: ActionReducerMap<TodosState> = {
-  todos: todos.reducer,
-  currentFilter: currentFilter.reducer,
-  errors: errors.reducer
+  //@ts-ignore
+  [userStore]: userReducers,
+  [todoStore]: todos.reducer,
+  [currentFilterStore]: currentFilter.reducer,
+  [errorsStore]: errors.reducer
 };
 
 export const metaReducers: MetaReducer<TodosState>[] =!environment.production ? [] : [];

@@ -3,13 +3,13 @@ import {Pipe, PipeTransform} from '@angular/core';
 @Pipe({
   name: 'visibleTodos'
 })
-export class TodoPipe implements PipeTransform {
+export class VisibleTodosPipe implements PipeTransform {
   transform(todos: any, filter: any){
     if (!todos) return;
     return this.getVisibleTodos(todos, filter);
   }
 
-  private getVisibleTodos(todos: any[], filter: any){
+  public getVisibleTodos(todos: any[], filter: any){
     let t = todos.slice().reverse();
     switch (filter) {
       case 'SHOW_ACTIVE':

@@ -2,8 +2,12 @@ import { Component, OnDestroy } from '@angular/core';
 import {Observable} from "rxjs";
 import {Todo} from "../../reducers/todo/todo.model";
 import {BaseError} from "../../reducers/errors/errors.model";
-import {Store} from "@ngrx/store";
+import {Action, ActionReducerMap, Store} from "@ngrx/store";
 import {getCurrentFilter, getErrors, getTodos, TodosState} from "../../reducers";
+import { map } from 'rxjs/operators';
+import { combineReducers, ActionReducer } from '@ngrx/store';
+import * as fromTodos from 'src/app/reducers/todo/todo.actions';
+import * as fromFilter from 'src/app/reducers/filter/filter.actions';
 
 @Component({
   selector: 'app-todo-list',
@@ -12,6 +16,7 @@ import {getCurrentFilter, getErrors, getTodos, TodosState} from "../../reducers"
 })
 export class TodoListComponent implements OnDestroy {
 
+  // currentFilter: ActionReducerMap<TodosState, Action>;
   currentFilter: any;
   todos: Observable<Todo>;
   errors: Observable<Array<BaseError>>;
@@ -27,7 +32,7 @@ export class TodoListComponent implements OnDestroy {
     this.errors = _store.select(getErrors);
   }
 
-  private addTodo(input: { value: string | any[]; }) {
+  public addTodo(input: { value: string | any[]; }) {
     if (input.value.length === 0) return;
     this._store.dispatch(
       new fromTodos.AddTodo(
@@ -37,7 +42,7 @@ export class TodoListComponent implements OnDestroy {
     input.value = '';
   }
 
-  private addTodoAsync(input: { value: string; }) {
+  public addTodoAsync(input: { value: string; }) {
     this._store.dispatch(
       new fromTodos.AddTodoEffect(
         <Todo>{ text: input.value, completed: false }
@@ -46,12 +51,12 @@ export class TodoListComponent implements OnDestroy {
     input.value = '';
   }
 
-  private onTodoClick(id: any) {
+  public onTodoClick(id: any) {
     this._store.dispatch(
       new fromTodos.ToggleTodo(<Todo>{ id })
     );
   }
-  private removeTodo(id: any) {
+  public removeTodo(id: any) {
     this._store.dispatch(
       new fromTodos.DeleteTodo(<Todo>{ id })
     );
@@ -64,6 +69,7 @@ export class TodoListComponent implements OnDestroy {
   }
 
   public ngOnDestroy() {
+    this.todos.subscribe()
   }
 
 }

@@ -30,8 +30,8 @@ import {PostsModule} from "./modules/posts/posts.module";
 import { OnlyNumberDirective } from './directive/only-number.directive';
 import {LinkPipe} from "./pipe/link.pipe";
 import {FormsModule} from "@angular/forms";
-import { TodoPipe } from './pipe/todo.pipe';
-import {TodoListModule} from "./modules/todo-list/todo-list.module";
+import { VisibleTodosPipe } from './pipe/visibleTodosPipe';
+import {TodoListComponent} from "./modules/todo-list/todo-list.component";
 
 
 @NgModule({
@@ -46,7 +46,8 @@ import {TodoListModule} from "./modules/todo-list/todo-list.module";
     PostsComponent,
     OnlyNumberDirective,
     LinkPipe,
-    TodoPipe
+    VisibleTodosPipe,
+    TodoListComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +60,6 @@ import {TodoListModule} from "./modules/todo-list/todo-list.module";
     HttpClientModule,
     UserViewModule,
     PostsModule,
-    TodoListModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {
@@ -81,7 +81,7 @@ import {TodoListModule} from "./modules/todo-list/todo-list.module";
     },],
   exports: [
     OnlyNumberDirective,
-    TodoPipe
+    VisibleTodosPipe
   ],
   bootstrap: [AppComponent]
 })

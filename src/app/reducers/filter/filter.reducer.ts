@@ -1,6 +1,7 @@
 import { Filter } from './filter.model';
 import { CurrentFilterActions, CurrentFilterActionTypes } from './filter.actions';
 
+export const currentFilterStore = "filterList"
 export const initialState: string = 'SHOW_ALL';
 
 export function reducer(state = initialState, action: CurrentFilterActions): string {

@@ -1,21 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
-@import url(https://fonts.googleapis.com/css?family=Ubuntu:500);
-@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono);
-
-* {
-  -webkit-font-smoothing: antialiased !important;
-  -moz-osx-font-smoothing: grayscale;
-  text-shadow: 0px 0px 3px rgba(0,0,0,0.2);
-  font-family: "Ubuntu";
-}
-
-.active {
-  text-decoration: #3498db;
-}
-
-.inactive {
-  text-decoration: none;
-}
+///* You can add global styles to this file, and also import other style files */
+//@import url(https://fonts.googleapis.com/css?family=Ubuntu:500);
+//@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono);
+//
+//* {
+//  -webkit-font-smoothing: antialiased !important;
+//  -moz-osx-font-smoothing: grayscale;
+//  text-shadow: 0px 0px 3px rgba(0,0,0,0.2);
+//  font-family: "Ubuntu";
+//}
+//
+//.active {
+//  text-decoration: #3498db;
+//}
+//
+//.inactive {
+//  text-decoration: none;
+//}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

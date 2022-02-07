@@ -1,6 +1,6 @@
 <div>
-  <div>
-    <input #todo (click)="addTodo(todo)">
+  <div class="wrapper">
+    <input #todo (keydown.enter)="addTodo(todo)">
     <button (click)="addTodo(todo)">Add todo</button>
     <button (click)="addTodoAsync(todo)">Add todo (async)</button>
   </div>
