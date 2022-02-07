@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
-import {GithubService} from "./services/git/github.service";
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [GithubService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'routers-test';
+
+  ngOnInit() {
+  }
 }

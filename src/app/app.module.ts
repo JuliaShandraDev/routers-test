@@ -30,6 +30,8 @@ import {PostsModule} from "./modules/posts/posts.module";
 import { OnlyNumberDirective } from './directive/only-number.directive';
 import {LinkPipe} from "./pipe/link.pipe";
 import {FormsModule} from "@angular/forms";
+import { TodoPipe } from './pipe/todo.pipe';
+import {TodoListModule} from "./modules/todo-list/todo-list.module";
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import {FormsModule} from "@angular/forms";
     WithResolverComponent,
     PostsComponent,
     OnlyNumberDirective,
-    LinkPipe
+    LinkPipe,
+    TodoPipe
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import {FormsModule} from "@angular/forms";
     HttpClientModule,
     UserViewModule,
     PostsModule,
+    TodoListModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
       runtimeChecks: {
@@ -76,7 +80,8 @@ import {FormsModule} from "@angular/forms";
       useValue: [PostsEffects],
     },],
   exports: [
-    OnlyNumberDirective
+    OnlyNumberDirective,
+    TodoPipe
   ],
   bootstrap: [AppComponent]
 })
