@@ -18,9 +18,9 @@ import { Errors } from './errors/errors.model';
 
 import { environment } from '../../environments/environment';
 import {UserModel} from "../model/user.model";
-import {errorsStore} from "./errors/errors.reducer";
-import {currentFilterStore} from "./filter/filter.reducer";
-import {todoStore} from "./todo/todo.reducer";
+import {errorsReducer, errorsStore} from "./errors/errors.reducer";
+import {currentFilterStore, filterReducer} from "./filter/filter.reducer";
+import {todoReducer, todoStore} from "./todo/todo.reducer";
 
 export interface IUserListState {
   Loading: boolean;
@@ -45,9 +45,9 @@ export interface TodosState extends Todos, Filter, Errors { }
 export const reducers: ActionReducerMap<TodosState> = {
   //@ts-ignore
   [userStore]: userReducers,
-  [todoStore]: todos.reducer,
-  [currentFilterStore]: currentFilter.reducer,
-  [errorsStore]: errors.reducer
+  [todoStore]: todoReducer,
+  [currentFilterStore]: filterReducer,
+  [errorsStore]: errorsReducer
 };
 
 export const metaReducers: MetaReducer<TodosState>[] =!environment.production ? [] : [];
@@ -63,7 +63,6 @@ export const getFilteredTodos = createSelector(
 
 function getVisibleTodos(todos: Array<Todo>, filter: string) {
   console.log("Doing calculations...");
-  debugger;
   if (!todos || !filter) return;
   let t = todos.slice().reverse();
   switch (filter) {

@@ -4,7 +4,7 @@ import { CurrentFilterActions, CurrentFilterActionTypes } from './filter.actions
 export const currentFilterStore = "filterList"
 export const initialState: string = 'SHOW_ALL';
 
-export function reducer(state = initialState, action: CurrentFilterActions): string {
+export function filterReducer(state = initialState, action: CurrentFilterActions): string {
   switch (action.type) {
     case CurrentFilterActionTypes.SetCurrentFilter:
       return action.payload.filter

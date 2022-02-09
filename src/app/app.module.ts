@@ -32,6 +32,7 @@ import {LinkPipe} from "./pipe/link.pipe";
 import {FormsModule} from "@angular/forms";
 import { VisibleTodosPipe } from './pipe/visibleTodosPipe';
 import {TodoListComponent} from "./modules/todo-list/todo-list.component";
+import {TodoEffects} from "./reducers/todo/todo.effects";
 
 
 @NgModule({
@@ -60,28 +61,28 @@ import {TodoListComponent} from "./modules/todo-list/todo-list.component";
     HttpClientModule,
     UserViewModule,
     PostsModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      }
-    }),
+    StoreModule.forRoot(reducers),
+    // StoreModule.forRoot(reducers, {
+    //   metaReducers,
+    //   runtimeChecks: {
+    //     strictStateImmutability: true,
+    //     strictActionImmutability: true
+    //   }
+    // }),
     RouterModule.forRoot([]),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([PostsEffects]),
+    EffectsModule.forRoot([TodoEffects]),
     FormsModule
   ],
-  providers: [GithubService, PostsEffects,
+  providers: [GithubService, PostsEffects, TodoEffects,
     {
       provide: USER_PROVIDED_EFFECTS,
       multi: true,
-      useValue: [PostsEffects],
+      useValue: [TodoEffects],
     },],
   exports: [
-    OnlyNumberDirective,
-    VisibleTodosPipe
+    OnlyNumberDirective
   ],
   bootstrap: [AppComponent]
 })

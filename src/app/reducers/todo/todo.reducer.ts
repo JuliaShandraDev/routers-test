@@ -3,7 +3,7 @@ import { TodoActions, TodoActionTypes, ToggleTodo} from './todo.actions';
 
 export const todoStore = "todoList"
 export const initialState: Array<Todo> = [];
-export const reducer = (state = initialState, action: TodoActions): Array<Todo> => {
+export const todoReducer = (state = initialState, action: TodoActions): Array<Todo> => {
   switch (action.type) {
     case TodoActionTypes.AddTodo:
       return state.concat(<Todo>{

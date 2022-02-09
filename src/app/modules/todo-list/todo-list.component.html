@@ -7,19 +7,19 @@
   <ul>
     <li *ngFor="let todo of todos | async | visibleTodos:currentFilter" (click)="onTodoClick(todo.id)"
         [style.textDecoration]="todo.completed?'line-through':'none'">
-      {{todo.text}} <a href="#" (click)="removeTodo(todo.id)">x</a>
+      {{todo.text}} <button (click)="removeTodo(todo.id)">Delete</button>
     </li>
   </ul>
   <p>Show:
-    <a href="#"
+    <button
        (click)="applyFilter('SHOW_ALL');"
-       [ngClass]="{'active': currentFilter==='SHOW_ALL', 'inactive': currentFilter!='SHOW_ALL'}">All</a>&nbsp;
-    <a href="#"
+       [ngClass]="{'active': currentFilter==='SHOW_ALL', 'inactive': currentFilter!='SHOW_ALL'}">All</button>&nbsp;
+    <button
        (click)="applyFilter('SHOW_ACTIVE');"
-       [ngClass]="{'active': currentFilter==='SHOW_ACTIVE', 'inactive': currentFilter!='SHOW_ACTIVE'}">Active</a>&nbsp;
-    <a href="#"
+       [ngClass]="{'active': currentFilter==='SHOW_ACTIVE', 'inactive': currentFilter!='SHOW_ACTIVE'}">Active</button>&nbsp;
+    <button
        (click)="applyFilter('SHOW_COMPLETED');"
-       [ngClass]="{'active': currentFilter==='SHOW_COMPLETED', 'inactive': currentFilter!='SHOW_COMPLETED'}">Completed</a>
+       [ngClass]="{'active': currentFilter==='SHOW_COMPLETED', 'inactive': currentFilter!='SHOW_COMPLETED'}">Completed</button>
   </p>
   <div *ngFor="let error of errors | async">{{error.message}}</div>
 </div>

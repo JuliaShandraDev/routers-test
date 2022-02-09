@@ -3,7 +3,7 @@ import { ErrorsActions, ErrorsActionTypes } from './errors.actions';
 export const errorsStore = "errorsList"
 export const initialState: Array<any> = [];
 
-export const reducer = (state = initialState, action: ErrorsActions) => {
+export const errorsReducer = (state = initialState, action: ErrorsActions) => {
   switch (action.type) {
     case ErrorsActionTypes.SetError:
       return state.concat(action.payload.error);
