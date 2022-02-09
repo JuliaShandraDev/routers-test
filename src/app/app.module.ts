@@ -14,13 +14,17 @@ import {ExampleTwoComponent} from './example-two/example-two.component';
 import {StoreModule} from "@ngrx/store";
 import {ExampleEffects} from "./store/example.effects";
 import * as fromReducer from "./store/example.reducer"
+import {LinkPipe} from "./pipe/link.pipe";
+import {OnlyNumberDirective} from "./directive/only-number.directive";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ExampleOneComponent,
-    ExampleTwoComponent
+    ExampleTwoComponent,
+    LinkPipe,
+    OnlyNumberDirective
   ],
   imports: [
     BrowserModule,
