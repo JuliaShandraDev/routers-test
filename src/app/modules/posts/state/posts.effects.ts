@@ -24,6 +24,7 @@ import { PostsService } from 'src/app/services/posts/posts.service';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
+import {ROUTER_NAVIGATION, RouterNavigatedAction} from "@ngrx/router-store";
 
 @Injectable()
 export class PostsEffects {
@@ -95,29 +96,29 @@ export class PostsEffects {
     );
   });
 
-  // getSinglePost$ = createEffect((): Observable<any> => {
-  //   return this.actions$.pipe(
-  //     ofType(ROUTER_NAVIGATION),
-  //     filter((r: RouterNavigatedAction) => {
-  //       return r.payload.routerState.url.startsWith('/posts/details');
-  //     }),
-  //     map((r: RouterNavigatedAction) => {
-  //       console.log(r)
-  //       // @ts-ignore
-  //       return r.payload.event.id.toString();
-  //     }),
-  //     withLatestFrom(this.store.select(getPosts)),
-  //     switchMap(([id, posts]) => {
-  //       if (!posts.length) {
-  //         return this.postsService.getPostById(id).pipe(
-  //           map((post) => {
-  //             const postData = [{ ...post, id }];
-  //             return loadPostsSuccess({ posts: postData });
-  //           })
-  //         );
-  //       }
-  //       return posts;
-  //     })
-  //   );
-  // });
+  getSinglePost$ = createEffect((): Observable<any> => {
+    return this.actions$.pipe(
+      ofType(ROUTER_NAVIGATION),
+      filter((r: RouterNavigatedAction) => {
+        return r.payload.routerState.url.startsWith('/posts/details');
+      }),
+      map((r: RouterNavigatedAction) => {
+        console.log(r)
+        // @ts-ignore
+        return r.payload.event.id.toString();
+      }),
+      withLatestFrom(this.store.select(getPosts)),
+      switchMap(([id, posts]) => {
+        if (!posts.length) {
+          return this.postsService.getPostById(id).pipe(
+            map((post) => {
+              const postData = [{ ...post, id }];
+              return loadPostsSuccess({ posts: postData });
+            })
+          );
+        }
+        return posts;
+      })
+    );
+  });
 }

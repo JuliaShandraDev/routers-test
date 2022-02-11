@@ -12,11 +12,11 @@ export class AngularComponent {
 
   public value = '';
 
-  inputChange(event: any){
+  inputChange(event: any): void{
     this.value = event
   }
 
-  goToPage(pageName: string){
+  goToPage(pageName: string): void{
     this.router.navigate([`${pageName}`])
   }
 }
